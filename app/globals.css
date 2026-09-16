@@ -141,6 +141,24 @@ h1 { margin: 33px 0 6px; font-size: clamp(2.9rem, 4.4vw, 4.5rem); font-weight: 7
 .manifesto-signature { position: relative; display: block; font-size: 3rem; font-weight: 850; line-height: .9; letter-spacing: -.07em; transform: rotate(-7deg); padding-right: 28px; white-space: nowrap; }
 .manifesto-signature > span { position: absolute; right: 0; top: -10px; color: var(--orange); font-size: 2rem; }
 
+.next-event-section { border-top: 1px solid var(--line); background: rgb(17 17 17 / 90%); }
+.next-event-layout { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); align-items: center; gap: clamp(28px, 4vw, 64px); }
+.next-event-photo { overflow: hidden; border: 1px solid #383833; background: var(--bg); }
+.next-event-photo img { display: block; width: 100%; height: auto; }
+.next-event-photo figcaption { padding: 16px 20px; color: var(--muted); font-size: .875rem; line-height: 1.5; }
+.next-event-details { min-width: 0; }
+.next-event-info { margin: 24px 0; }
+.next-event-info > div { padding-block: 20px; border-bottom: 1px solid var(--line); }
+.next-event-info > div:first-child { padding-top: 0; }
+.next-event-info dt { margin-bottom: 9px; color: var(--muted); font-size: .75rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
+.next-event-info dd { margin: 0; font-size: clamp(1.5rem, 2.2vw, 2rem); font-weight: 600; line-height: 1.25; letter-spacing: -.035em; }
+.next-event-info time { color: var(--orange); }
+.next-event-schedule { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 12px; }
+.next-event-info .next-event-time { color: var(--text); white-space: nowrap; }
+.next-event-info dd > span { display: block; margin-top: 8px; color: var(--muted); font-size: .9375rem; font-weight: 400; line-height: 1.5; letter-spacing: 0; }
+.next-event-invitation { color: var(--muted); font-size: 1rem; line-height: 1.7; }
+.next-event-details > .button { margin-top: 24px; }
+
 .volunteer-section { background: rgb(18 18 16 / 93%); border-block: 1px solid var(--line); }
 .volunteer-layout { display: grid; grid-template-columns: 1.1fr 1fr; gap: 38px; align-items: stretch; }
 .volunteer-choices { display: flex; flex-direction: column; gap: 10px; margin: 0; padding: 0; border: 0; min-width: 0; }
@@ -339,6 +357,8 @@ h1 { margin: 33px 0 6px; font-size: clamp(2.9rem, 4.4vw, 4.5rem); font-weight: 7
   .manifesto-bottom > p { font-size: 1rem; }
   .manifesto-signature { font-size: 2.2rem; margin-top: 10px; }
   .volunteer-layout { grid-template-columns: 1fr; gap: 24px; }
+  .next-event-layout { grid-template-columns: 1fr; gap: 28px; }
+  .next-event-details > .button { width: 100%; }
   .volunteer-card { min-height: 98px; }
   .volunteer-detail { padding: 28px; }
   .detail-number { font-size: 2.5rem; margin-top: 20px; }

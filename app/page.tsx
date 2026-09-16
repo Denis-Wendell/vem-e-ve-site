@@ -7,6 +7,7 @@ import { VolunteerSection } from "@/components/VolunteerSection";
 import louvorImage from "@/public/images/louvor.jpeg";
 import testemunhoImage from "@/public/images/testemunho.jpeg";
 import missaoImage from "@/public/images/missao.jpeg";
+import encontroImage from "@/public/images/vem_e_ve.jpg";
 
 export default function Home() {
   return (
@@ -94,10 +95,36 @@ export default function Home() {
           </Reveal>
         </section>
 
+        <section id="proximo-encontro" className="section next-event-section" aria-labelledby="next-event-title">
+          <div className="section-width">
+            <Reveal className="section-heading heading-split">
+              <div><p className="section-label"><span>04</span> MARQUE NA AGENDA</p><h2 id="next-event-title">Próximo<br /><em>Vem e Vê.</em></h2></div>
+              <p className="heading-description">Uma nova oportunidade de estar junto,<br />compartilhar a fé e anunciar Jesus.</p>
+            </Reveal>
+            <div className="next-event-layout">
+              <Reveal>
+                <figure className="next-event-photo">
+                  <Image src={encontroImage} alt="Participantes do Vem e Vê reunidos em um encontro ao ar livre à noite." sizes="(max-width: 760px) 100vw, 55vw" />
+                  <figcaption>Gente que caminha e serve junto.</figcaption>
+                </figure>
+              </Reveal>
+              <Reveal delay={80} className="next-event-details">
+                <span className="eyebrow">TEM UM LUGAR PARA VOCÊ AQUI</span>
+                <dl className="next-event-info">
+                  <div><dt>Data e horário</dt><dd className="next-event-schedule"><time dateTime="2026-10-23">23 de outubro de 2026</time>{" "}<time className="next-event-time" dateTime="19:00">às 19 horas</time></dd></div>
+                  <div><dt>Local</dt><dd>Parque Municipal Lagoa Da Compensa<span>Av. Padre Agostinho Caballero Martin- Santo Antônio, Manaus - AM</span><span>Em frente ao DB da Compensa</span></dd></div>
+                </dl>
+                <p className="next-event-invitation">Reserve essa data e venha viver esse momento com a gente.</p>
+                <a className="button button-primary" href="#servir">Quero fazer parte <span aria-hidden="true">↗</span></a>
+              </Reveal>
+            </div>
+          </div>
+        </section>
+
         <section id="servir" className="section volunteer-section" aria-labelledby="volunteer-title">
           <div className="section-width">
             <Reveal className="section-heading heading-split">
-              <div><p className="section-label"><span>04</span> FAÇA PARTE</p><h2 id="volunteer-title">Você viu.<br /><em>Agora, vem.</em></h2></div>
+              <div><p className="section-label"><span>05</span> FAÇA PARTE</p><h2 id="volunteer-title">Você viu.<br /><em>Agora, vem.</em></h2></div>
               <p className="heading-description">O Reino é construído por pessoas<br className="desktop-break" /> dispostas a dizer sim. Qual será<br className="desktop-break" /> a sua resposta?</p>
             </Reveal>
             <Reveal><VolunteerSection /></Reveal>
