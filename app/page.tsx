@@ -4,6 +4,9 @@ import { MotionBackground } from "@/components/MotionBackground";
 import { Reveal } from "@/components/Reveal";
 import { SiteHeader } from "@/components/SiteHeader";
 import { VolunteerSection } from "@/components/VolunteerSection";
+import louvorImage from "@/public/images/louvor.jpeg";
+import testemunhoImage from "@/public/images/testemunho.jpeg";
+import missaoImage from "@/public/images/missao.jpeg";
 
 export default function Home() {
   return (
@@ -72,11 +75,11 @@ export default function Home() {
               <p className="heading-description">Encontros, histórias e passos de fé.<br />É assim que o movimento acontece.</p>
             </Reveal>
             <div className="experience-grid">
-              <Reveal><ExperienceCard number="01" title="Louvor" word="ADORAR." description="Vozes e corações unidos para adorar a Jesus." /></Reveal>
-              <Reveal delay={80}><ExperienceCard number="02" title="Testemunhos" word="CRER." description="Histórias de vidas alcançadas e transformadas pelo Evangelho." /></Reveal>
-              <Reveal delay={160}><ExperienceCard number="03" title="Missão" word="IR." description="Fé em ação, além das quatro paredes, perto de quem precisa." /></Reveal>
+              <Reveal><ExperienceCard number="01" title="Louvor" word="ADORAR." description="Vozes e corações unidos para adorar a Jesus." imageSrc={louvorImage} imageAlt="Louvor em grupo" /></Reveal>
+              <Reveal delay={80}><ExperienceCard number="02" title="Testemunhos" word="CRER." description="Histórias de vidas alcançadas e transformadas pelo Evangelho." imageSrc={testemunhoImage} imageAlt="Testemunho de fé" /></Reveal>
+              <Reveal delay={160}><ExperienceCard number="03" title="Missão" word="IR." description="Fé em ação, além das quatro paredes, perto de quem precisa." imageSrc={missaoImage} imageAlt="Missão em ação" /></Reveal>
             </div>
-            <p className="gallery-note">Em breve, fotos e histórias dos nossos encontros por aqui.</p>
+
           </div>
         </section>
 
@@ -106,7 +109,7 @@ export default function Home() {
             <p className="eyebrow">CUMPRINDO O IDE. ANUNCIANDO JESUS.</p>
             <h2 id="closing-title">Vem. Veja. <em>Vá.</em></h2>
             <div className="closing-bottom">
-              <p>Pode algo bom vir do Amazonas?<br /><strong>A gente acredita que sim.</strong></p>
+              <p>Pode algo bom vir de Manaus?<br /><strong>A gente acredita que sim.</strong></p>
               <a className="button button-primary" href="#servir">Encontre sua forma de servir <span aria-hidden="true">↗</span></a>
             </div>
           </Reveal>
@@ -123,16 +126,20 @@ export default function Home() {
           </div>
           <div className="footer-top">
             <a className="brand" href="#inicio" aria-label="Vem e Vê — voltar ao início"><Image src="/brand/vem-e-ve.jpg" alt="" width={58} height={58} /><span className="brand-name">VEM E VÊ<span>Movimento evangelístico</span></span></a>
-            <p>Do Amazonas. Pelo Reino.</p>
+            <p>Do Amazonas. Pelo Reino.<br />Manaus, Amazonas · Brasil</p>
             <a className="back-top" href="#inicio">Voltar ao início <span aria-hidden="true">↑</span></a>
           </div>
           <div className="footer-bottom">
-            <span>Vem e Vê · Movimento Evangelístico</span>
-            <p>Foto do Amazonas: <a href="https://commons.wikimedia.org/wiki/File:Amazon_CIAT_%282%29.jpg" target="_blank" rel="noreferrer">Neil Palmer/CIAT</a> · <a href="https://creativecommons.org/licenses/by-sa/2.0/" target="_blank" rel="noreferrer">CC BY-SA 2.0</a> · Recorte e tratamento de cor.</p>
+            <p>© 2026 Vem e Vê · Movimento Evangelístico. Todos os direitos reservados.</p>
+            <p className="footer-credit">
+              Desenvolvido por{" "}
+              <a href="https://deniwendell-dev.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Portfólio de Denis Wendell (abre em nova aba)">
+                © 2026 Denis Wendell <span aria-hidden="true">↗</span>
+              </a>
+            </p>
           </div>
         </div>
       </footer>
     </>
   );
 }
-

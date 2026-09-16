@@ -1,16 +1,13 @@
 "use client";
 
 import { useState } from "react";
-
-const areas = [
-  { id: "midia", name: "Mídia", summary: "Histórias que precisam ser contadas.", detail: "Fotografia, vídeo, design, redes sociais e transmissão. Use sua criatividade para levar essa mensagem mais longe.", number: "01" },
-  { id: "intercessao", name: "Intercessão", summary: "Cada passo começa em oração.", detail: "Sustente cada etapa do movimento em oração, intercedendo pelas pessoas, pelas equipes e pelos lugares que vamos alcançar.", number: "02" },
-  { id: "louvor", name: "Louvor", summary: "Uma só voz. Um só propósito.", detail: "Músicos, vocalistas e técnicos unidos para servir. Coloque seus dons a serviço de momentos de louvor e adoração a Jesus.", number: "03" },
-  { id: "apoio", name: "Recepção e apoio", summary: "O cuidado está nos detalhes.", detail: "Acolhimento, organização, produção e suporte. Ajude a preparar cada encontro e a receber cada pessoa com cuidado.", number: "04" },
-];
+import { VolunteerRegistration } from "@/components/VolunteerRegistration";
+import { volunteerAreas as areas } from "@/lib/volunteer-registration";
+import type { VolunteerArea } from "@/lib/volunteer-registration";
 
 export function VolunteerSection() {
-  const [selected, setSelected] = useState(areas[0].id);
+  const [selected, setSelected] = useState<VolunteerArea["id"]>(areas[0].id);
+  const [registrationOpen, setRegistrationOpen] = useState(false);
   const current = areas.find((area) => area.id === selected)!;
 
   return (
@@ -35,12 +32,13 @@ export function VolunteerSection() {
         <div className="registration-note">
           <span className="registration-icon" aria-hidden="true">+</span>
           <div>
-            <strong>Inscrições em breve</strong>
-            <p>Estamos preparando os próximos passos. Acompanhe o movimento no Instagram.</p>
-            <a className="text-link" href="https://www.instagram.com/vemevemovementt/" target="_blank" rel="noopener noreferrer" aria-label="@vemevemovementt no Instagram (abre em nova aba)">@vemevemovementt <span aria-hidden="true">↗</span></a>
+            <strong>Seu próximo passo começa aqui.</strong>
+            <p>Inscreva-se para servir em {current.name}. Nossa equipe vai conhecer sua história e entrar em contato.</p>
+            <button className="button button-primary volunteer-registration-button" type="button" onClick={() => setRegistrationOpen(true)} aria-haspopup="dialog">Seja um voluntário <span aria-hidden="true">↗</span></button>
           </div>
         </div>
       </aside>
+      {registrationOpen && <VolunteerRegistration area={current} onClose={() => setRegistrationOpen(false)} />}
     </div>
   );
 }
