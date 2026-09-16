@@ -75,7 +75,7 @@ export default function Home() {
               <p className="heading-description">Encontros, histórias e passos de fé.<br />É assim que o movimento acontece.</p>
             </Reveal>
             <div className="experience-grid">
-              <Reveal><ExperienceCard number="01" title="Louvor" word="ADORAR." description="Vozes e corações unidos para adorar a Jesus." imageSrc={louvorImage} imageAlt="Louvor em grupo" /></Reveal>
+              <Reveal><ExperienceCard number="01" title="Comunhão" word="ADORAR." description="Pessoas reunidas para ouvir, compartilhar histórias e caminhar juntas na fé." imageSrc={louvorImage} imageAlt="Louvor em grupo" /></Reveal>
               <Reveal delay={80}><ExperienceCard number="02" title="Testemunhos" word="CRER." description="Histórias de vidas alcançadas e transformadas pelo Evangelho." imageSrc={testemunhoImage} imageAlt="Testemunho de fé" /></Reveal>
               <Reveal delay={160}><ExperienceCard number="03" title="Missão" word="IR." description="Fé em ação, além das quatro paredes, perto de quem precisa." imageSrc={missaoImage} imageAlt="Missão em ação" /></Reveal>
             </div>
