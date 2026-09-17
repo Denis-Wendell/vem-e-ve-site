@@ -55,17 +55,19 @@ Na seção **Servir**, a pessoa escolhe uma das quatro áreas e clica em **Seja 
 - se já serve em algum ministério e, em caso positivo, qual;
 - autorização para usar os dados na análise da inscrição e no contato.
 
-O envio usa o [FormSubmit AJAX](https://formsubmit.co/ajax-documentation), diretamente do navegador, sem servidor de backend próprio. O destinatário padrão é **deniswendell0101@gmail.com**. A confirmação na tela aparece somente quando o serviço aceita o envio; ela informa que a inscrição será analisada e que a equipe retornará pelo celular informado. A aceitação do serviço não comprova a entrega na caixa de entrada.
+O envio usa o [FormSubmit AJAX](https://formsubmit.co/ajax-documentation), diretamente do navegador, sem servidor de backend próprio. O destinatário é definido pela variável `NEXT_PUBLIC_VOLUNTEER_EMAIL`. Se ela estiver ausente ou vazia, o formulário informa indisponibilidade e não envia os dados para nenhum endereço. A confirmação na tela aparece somente quando o serviço aceita o envio; ela informa que a inscrição será analisada e que a equipe retornará pelo celular informado. A aceitação do serviço não comprova a entrega na caixa de entrada.
 
 ### Configurar o email destinatário
 
 Para mudar o destinatário, copie `.env.example` para `.env.local` e altere:
 
 ```dotenv
-NEXT_PUBLIC_VOLUNTEER_EMAIL=deniswendell0101@gmail.com
+NEXT_PUBLIC_VOLUNTEER_EMAIL=vemevemovementt@gmail.com
 ```
 
 Essa variável é pública e incorporada ao código do navegador durante o build; não coloque senhas ou chaves nela. Reinicie `npm run dev` após mudar o arquivo. Na hospedagem, configure a variável no projeto e faça um novo build/deploy para aplicar a mudança.
+
+Na Vercel, salve o valor em **Settings → Environment Variables**, incluindo o ambiente **Production**, e faça um novo deploy de produção. Alterar `.env.local` ou `.env.example` e fazer commit não atualiza as variáveis da Vercel; `.env.local` não é versionado. Após o deploy, abra o domínio principal em uma nova aba para carregar a versão atualizada.
 
 ### Ativar e conferir o recebimento
 

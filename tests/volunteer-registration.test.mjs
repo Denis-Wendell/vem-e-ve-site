@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { test } from "node:test";
+import { afterEach, beforeEach, test } from "node:test";
 import { buildVolunteerPayload, sendVolunteerApplication, volunteerAreas, VolunteerValidationError } from "../lib/volunteer-registration.ts";
 
 const application = {
@@ -14,6 +14,16 @@ const application = {
 };
 
 const options = () => ({ signal: new AbortController().signal, pageUrl: "http://localhost:3000/#servir" });
+
+let previousRecipient;
+beforeEach(() => {
+  previousRecipient = process.env.NEXT_PUBLIC_VOLUNTEER_EMAIL;
+  process.env.NEXT_PUBLIC_VOLUNTEER_EMAIL = "vemevemovementt@gmail.com";
+});
+afterEach(() => {
+  if (previousRecipient === undefined) delete process.env.NEXT_PUBLIC_VOLUNTEER_EMAIL;
+  else process.env.NEXT_PUBLIC_VOLUNTEER_EMAIL = previousRecipient;
+});
 
 test("preserva a área selecionada e os dados da inscrição em cada uma das quatro áreas", () => {
   for (const area of volunteerAreas) {
@@ -64,8 +74,7 @@ test("envia os campos por POST JSON ao destinatário e aceita confirmação expl
       ...options(),
       fetcher: async (url, init) => {
         calls += 1;
-        const recipient = process.env.NEXT_PUBLIC_VOLUNTEER_EMAIL?.trim() || "deniswendell0101@gmail.com";
-        assert.equal(url, `https://formsubmit.co/ajax/${encodeURIComponent(recipient)}`);
+        assert.equal(url, "https://formsubmit.co/ajax/vemevemovementt%40gmail.com");
         assert.equal(init.method, "POST");
         assert.equal(init.headers["Content-Type"], "application/json");
         assert.equal(init.credentials, "omit");
@@ -78,6 +87,33 @@ test("envia os campos por POST JSON ao destinatário e aceita confirmação expl
       },
     });
     assert.equal(calls, 1);
+  }
+});
+
+test("usa o destinatário configurado removendo espaços extras", async () => {
+  process.env.NEXT_PUBLIC_VOLUNTEER_EMAIL = "  equipe@example.com  ";
+  await sendVolunteerApplication(buildVolunteerPayload(application), {
+    ...options(),
+    fetcher: async (url) => {
+      assert.equal(url, "https://formsubmit.co/ajax/equipe%40example.com");
+      return Response.json({ success: true });
+    },
+  });
+});
+
+test("sem destinatário configurado não envia a inscrição a nenhum endereço", async () => {
+  for (const recipient of [undefined, "", "   "]) {
+    if (recipient === undefined) delete process.env.NEXT_PUBLIC_VOLUNTEER_EMAIL;
+    else process.env.NEXT_PUBLIC_VOLUNTEER_EMAIL = recipient;
+    let calls = 0;
+    await assert.rejects(sendVolunteerApplication(buildVolunteerPayload(application), {
+      ...options(),
+      fetcher: async () => {
+        calls += 1;
+        return Response.json({ success: true });
+      },
+    }), /inscrições estão temporariamente indisponíveis/);
+    assert.equal(calls, 0);
   }
 });
 

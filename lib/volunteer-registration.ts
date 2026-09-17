@@ -64,7 +64,10 @@ export async function sendVolunteerApplication(
   payload: Record<string, string>,
   options: { signal: AbortSignal; pageUrl: string; fetcher?: typeof fetch },
 ): Promise<void> {
-  const recipient = process.env.NEXT_PUBLIC_VOLUNTEER_EMAIL?.trim() || "deniswendell0101@gmail.com";
+  const recipient = process.env.NEXT_PUBLIC_VOLUNTEER_EMAIL?.trim();
+  if (!recipient) {
+    throw new Error("As inscrições estão temporariamente indisponíveis. Tente novamente mais tarde.");
+  }
   const fetcher = options.fetcher ?? fetch;
   let response: Response;
 
